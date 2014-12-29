@@ -28,13 +28,11 @@ Once the extension is installed, simply add widget to your page as follows:
 
 1) Default usage, render all flash messages stored in session flash via Yii::$app->session->setFlash().
 ```php
-
 echo Alert::widget(); 
 ```
 
 2) Custom usage, example:
 ```php
-
 echo Alert::widget([
           'useSessionFlash' => false,
           'options' => [
