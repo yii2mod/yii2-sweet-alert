@@ -31,7 +31,7 @@ Once the extension is installed, simply add widget to your page as follows:
 echo Alert::widget(); 
 ```
 
-2) Custom usage, example:
+2) Custom usage example:
 ```php
 echo Alert::widget([
           'useSessionFlash' => false,
