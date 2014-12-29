@@ -44,3 +44,7 @@ echo Alert::widget([
           ]
 ]);
 ```
+
+Alert Options 
+----------------
+You can find them on the [options page](http://tristanedwards.me/sweetalert)
