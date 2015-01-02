@@ -2,8 +2,7 @@ Alert Widget for Yii 2
 =========
 - Alert widget based on SweetAlert extension http://tristanedwards.me/sweetalert
 
-
-Installation
+Installation 
 ------------
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
