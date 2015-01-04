@@ -37,6 +37,6 @@ class AlertAsset extends AssetBundle
      * @var array list of bundle class names that this bundle depends on.
      */
     public $depends = [
-        'app\assets\AppAsset',
+        //'app\assets\AppAsset',
     ];
 }
