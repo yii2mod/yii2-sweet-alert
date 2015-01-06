@@ -33,10 +33,4 @@ class AlertAsset extends AssetBundle
         'sweet-alert.css'
     ];
 
-    /**
-     * @var array list of bundle class names that this bundle depends on.
-     */
-    public $depends = [
-        
-    ];
 }
