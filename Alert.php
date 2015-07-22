@@ -13,17 +13,37 @@ use yii\helpers\Json;
 class Alert extends Widget
 {
     /**
+     * Info type of the alert
+     */
+    const TYPE_INFO = 'info';
+    /**
+     * Error type of the alert
+     */
+    const TYPE_ERROR = 'error';
+    /**
+     * Success type of the alert
+     */
+    const TYPE_SUCCESS = 'success';
+    /**
+     * Warning type of the alert
+     */
+    const TYPE_WARNING = 'warning';
+
+    /**
+     * @var string the type of the alert to be displayed. One of the `TYPE_` constants.
+     * Defaults to `TYPE_SUCCESS`
+     */
+    public $type = self::TYPE_SUCCESS;
+    /**
      * All the flash messages stored for the session are displayed and removed from the session
      * Default true.
      * @var bool
      */
     public $useSessionFlash = true;
-
     /**
      * @var bool If set to true, the user can dismiss the modal by clicking outside it.
      */
     public $allowOutsideClick = true;
-
     /**
      * @var int Auto close timer of the modal. Set in ms (milliseconds). default - 1,5 second
      */
@@ -33,7 +53,6 @@ class Alert extends Widget
      * @var array
      */
     public $options = [];
-
 
     /**
      * Initializes the widget
@@ -85,6 +104,7 @@ class Alert extends Widget
     {
         $this->options['allowOutsideClick'] = $this->allowOutsideClick;
         $this->options['timer'] = $this->timer;
+        $this->options['type'] = $this->type;
         return Json::encode($this->options);
     }
 }
