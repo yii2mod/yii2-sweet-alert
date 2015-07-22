@@ -32,15 +32,14 @@ echo Alert::widget();
 
 2) Custom usage example:
 ```php
-echo Alert::widget([
-          'useSessionFlash' => false,
-          'options' => [
-               'title' => 'Success message',
-               'type' => 'Success',
-               'text' => "You will not be able to recover this imaginary file!",
-               'confirmButtonText'  => "Yes, delete it!",   
-               'cancelButtonText' =>  "No, cancel plx!"
-          ]
+echo \yii2mod\alert\Alert::widget([
+        'type' => \yii2mod\alert\Alert::TYPE_WARNING,
+        'options' => [
+            'title' => 'Success message',
+            'text' => "You will not be able to recover this imaginary file!",
+            'confirmButtonText'  => "Yes, delete it!",
+            'cancelButtonText' =>  "No, cancel plx!"
+        ]
 ]);
 ```
 
