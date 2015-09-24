@@ -92,8 +92,10 @@ class Alert extends Widget
     {
         $view = $this->getView();
         AlertAsset::register($view);
-        $js = 'sweetAlert(' . $this->getOptions() . ');';
-        $view->registerJs($js, $view::POS_END);
+        if ($this->useSessionFlash) {
+            $js = 'sweetAlert(' . $this->getOptions() . ');';
+            $view->registerJs($js, $view::POS_END);
+        }
     }
 
     /**
