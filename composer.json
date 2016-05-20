@@ -11,6 +11,7 @@
         }
     ],
     "require": {
+        "yiisoft/yii2": "*",
         "bower-asset/sweetalert" : "*"
     },
     "autoload": {
