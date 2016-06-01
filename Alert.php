@@ -4,6 +4,7 @@ namespace yii2mod\alert;
 
 use Yii;
 use yii\base\Widget;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 
 /**
@@ -28,6 +29,9 @@ class Alert extends Widget
      * Warning type of the alert
      */
     const TYPE_WARNING = 'warning';
+
+    const MESSAGE_TARGET_TITLE = 'title';
+    const MESSAGE_TARGET_TEXT = 'text';
 
     /**
      * @var string the type of the alert to be displayed. One of the `TYPE_` constants.
@@ -54,6 +58,8 @@ class Alert extends Widget
      */
     public $options = [];
 
+    public $messageTarget = 'title';
+
     /**
      * Initializes the widget
      */
@@ -69,7 +75,12 @@ class Alert extends Widget
                 $data = (array)$data;
                 foreach ($data as $message) {
                     $this->options['type'] = $type;
-                    $this->options['title'] = $message;
+                    if ($this->messageTarget == self::MESSAGE_TARGET_TITLE) {
+                        $this->options['title'] = $message;
+                    } else {
+                        $this->options['title'] = null;
+                        $this->options['text'] = $message;
+                    }
                 }
                 $session->removeFlash($type);
             }
@@ -106,7 +117,7 @@ class Alert extends Widget
     {
         $this->options['allowOutsideClick'] = $this->allowOutsideClick;
         $this->options['timer'] = $this->timer;
-        $this->options['type'] = $this->type;
+        $this->options['type'] = ArrayHelper::getValue($this->options, 'type', $this->type);
         return Json::encode($this->options);
     }
 }
