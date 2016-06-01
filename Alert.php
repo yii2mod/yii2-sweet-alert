@@ -3,7 +3,8 @@
 namespace yii2mod\alert;
 
 use Yii;
-use yii\base\Widget;
+use yii\bootstrap\Widget;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 
 /**
@@ -16,43 +17,56 @@ class Alert extends Widget
      * Info type of the alert
      */
     const TYPE_INFO = 'info';
+
     /**
      * Error type of the alert
      */
     const TYPE_ERROR = 'error';
+
     /**
      * Success type of the alert
      */
     const TYPE_SUCCESS = 'success';
+
     /**
      * Warning type of the alert
      */
     const TYPE_WARNING = 'warning';
 
     /**
+     * Input type of the alert
+     */
+    const TYPE_INPUT = 'input';
+
+    /**
      * @var string the type of the alert to be displayed. One of the `TYPE_` constants.
      * Defaults to `TYPE_SUCCESS`
      */
     public $type = self::TYPE_SUCCESS;
+
     /**
      * All the flash messages stored for the session are displayed and removed from the session
-     * Default true.
+     * Defaults to true.
      * @var bool
      */
     public $useSessionFlash = true;
+
     /**
      * @var bool If set to true, the user can dismiss the modal by clicking outside it.
+     * Defaults to true.
      */
     public $allowOutsideClick = true;
+
     /**
-     * @var int Auto close timer of the modal. Set in ms (milliseconds). default - 1,5 second
+     * @var int Auto close timer of the modal. Set in ms (milliseconds).
+     * Default - 2,5 second
      */
-    public $timer = 1500;
+    public $timer = 2500;
+
     /**
-     * Plugin options
-     * @var array
+     * @var string customer alert callback
      */
-    public $options = [];
+    public $callback = 'function() {}';
 
     /**
      * Initializes the widget
@@ -62,7 +76,7 @@ class Alert extends Widget
         parent::init();
 
         if ($this->useSessionFlash) {
-            $session = \Yii::$app->getSession();
+            $session = Yii::$app->getSession();
             $flashes = $session->getAllFlashes();
 
             foreach ($flashes as $type => $data) {
@@ -92,10 +106,8 @@ class Alert extends Widget
     {
         $view = $this->getView();
         AlertAsset::register($view);
-        if ($this->useSessionFlash) {
-            $js = 'sweetAlert(' . $this->getOptions() . ');';
-            $view->registerJs($js, $view::POS_END);
-        }
+        $js = "sweetAlert({$this->getOptions()}, {$this->callback});";
+        $view->registerJs($js, $view::POS_END);
     }
 
     /**
@@ -104,9 +116,10 @@ class Alert extends Widget
      */
     public function getOptions()
     {
-        $this->options['allowOutsideClick'] = $this->allowOutsideClick;
-        $this->options['timer'] = $this->timer;
-        $this->options['type'] = $this->type;
+        $this->options['allowOutsideClick'] = ArrayHelper::getValue($this->options, 'allowOutsideClick', $this->allowOutsideClick);
+        $this->options['timer'] = ArrayHelper::getValue($this->options, 'timer', $this->timer);
+        $this->options['type'] = ArrayHelper::getValue($this->options, 'type', $this->type);
+
         return Json::encode($this->options);
     }
 }

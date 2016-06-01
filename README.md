@@ -32,16 +32,29 @@ Once the extension is installed, simply add widget to your page as follows:
 echo Alert::widget(); 
 ```
 
-2) Custom usage example:
+2) Example with custom message and custom callback:
 ```php
 echo \yii2mod\alert\Alert::widget([
-        'type' => \yii2mod\alert\Alert::TYPE_WARNING,
-        'options' => [
-            'title' => 'Success message',
-            'text' => "You will not be able to recover this imaginary file!",
-            'confirmButtonText'  => "Yes, delete it!",
-            'cancelButtonText' =>  "No, cancel plx!"
-        ]
+    'options' => [
+        'useSessionFlash' => false,
+        'timer' => null,
+        'type' => \yii2mod\alert\Alert::TYPE_INPUT,
+        'title' => 'An input!',
+        'text' => "Write something interesting",
+        'confirmButtonText' => "Yes, delete it!",
+        'closeOnConfirm' => false,
+        'showCancelButton' => true,
+        'animation' => "slide-from-top",
+        'inputPlaceholder' => "Write something"
+    ],
+    'callback' => new \yii\web\JsExpression(' function(inputValue) { 
+                if (inputValue === false) return false;      
+                if (inputValue === "") { 
+                    swal.showInputError("You need to write something!");     
+                    return false;   
+                }      
+                swal("Nice!", "You wrote: " + inputValue, "success"); 
+    }')
 ]);
 ```
 
