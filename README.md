@@ -48,4 +48,4 @@ echo \yii2mod\alert\Alert::widget([
 
 Alert Options 
 ----------------
-You can find them on the [options page](http://tristanedwards.me/sweetalert)
+You can find them on the [options page](http://t4t5.github.io/sweetalert/)
