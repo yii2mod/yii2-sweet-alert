@@ -114,7 +114,7 @@ class Alert extends Widget
      * Get plugin options
      * @return string
      */
-    public function getOptions()
+    protected function getOptions()
     {
         $this->options['allowOutsideClick'] = ArrayHelper::getValue($this->options, 'allowOutsideClick', $this->allowOutsideClick);
         $this->options['timer'] = ArrayHelper::getValue($this->options, 'timer', $this->timer);
