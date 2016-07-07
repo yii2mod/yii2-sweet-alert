@@ -69,6 +69,11 @@ class Alert extends Widget
     public $callback = 'function() {}';
 
     /**
+     * @var bool If true then show message
+     */
+    protected $enable = false;
+
+    /**
      * Initializes the widget
      */
     public function init()
@@ -78,6 +83,8 @@ class Alert extends Widget
         if ($this->useSessionFlash) {
             $session = Yii::$app->getSession();
             $flashes = $session->getAllFlashes();
+
+            $this->enable = !empty($flashes);
 
             foreach ($flashes as $type => $data) {
                 $data = (array)$data;
@@ -104,10 +111,12 @@ class Alert extends Widget
      */
     protected function registerAssets()
     {
-        $view = $this->getView();
-        AlertAsset::register($view);
-        $js = "sweetAlert({$this->getOptions()}, {$this->callback});";
-        $view->registerJs($js, $view::POS_END);
+        if ($this->useSessionFlash && $this->enable) {
+            $view = $this->getView();
+            AlertAsset::register($view);
+            $js = "sweetAlert({$this->getOptions()}, {$this->callback});";
+            $view->registerJs($js, $view::POS_END);
+        }
     }
 
     /**
