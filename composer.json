@@ -12,11 +12,17 @@
     ],
     "require": {
         "yiisoft/yii2": "*",
+        "yiisoft/yii2-bootstrap": "*",
         "bower-asset/sweetalert" : "*"
     },
     "autoload": {
         "psr-4": {
             "yii2mod\\alert\\": ""
+        }
+    },
+    "extra": {
+        "asset-installer-paths": {
+            "bower-asset-library": "vendor/bower"
         }
     }
 }
