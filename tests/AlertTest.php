@@ -13,15 +13,15 @@ class AlertTest extends TestCase
 {
     public function testNoAlert()
     {
-        $output = Alert::widget();
-        $this->assertEmpty($output);
+        $widget = Yii::createObject(Alert::className());
+        $this->assertFalse(isset($widget->options['title']));
     }
 
     public function testRenderAlert()
     {
         $flashMessage = 'Test flash message';
         Yii::$app->session->addFlash('success', $flashMessage);
-        $widget = Yii::createObject(Alert::class);
+        $widget = Yii::createObject(Alert::className());
         $this->assertEquals($flashMessage, $widget->options['title']);
     }
 }
