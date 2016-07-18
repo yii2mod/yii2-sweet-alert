@@ -3,6 +3,7 @@ Alert Widget for Yii 2
 Alert widget based on [SweetAlert](http://t4t5.github.io/sweetalert/)
 
 [![Latest Stable Version](https://poser.pugx.org/yii2mod/yii2-sweet-alert/v/stable)](https://packagist.org/packages/yii2mod/yii2-sweet-alert) [![Total Downloads](https://poser.pugx.org/yii2mod/yii2-sweet-alert/downloads)](https://packagist.org/packages/yii2mod/yii2-sweet-alert) [![License](https://poser.pugx.org/yii2mod/yii2-sweet-alert/license)](https://packagist.org/packages/yii2mod/yii2-sweet-alert)
+[![Build Status](https://travis-ci.org/yii2mod/yii2-sweet-alert.svg?branch=master)](https://travis-ci.org/yii2mod/yii2-sweet-alert)
 
 Installation 
 ------------
