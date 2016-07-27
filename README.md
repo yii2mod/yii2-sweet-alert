@@ -28,6 +28,7 @@ Usage
 -------
 
 **For render the message from session flash you can use the following code:**
+
 1) Set the message in your action, for example:
 
 ```php
