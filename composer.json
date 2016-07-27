@@ -2,7 +2,7 @@
     "name": "yii2mod/yii2-sweet-alert",
     "description": "Alert widget based on SweetAlert extension {@link http://tristanedwards.me/sweetalert)",
     "type": "yii2-extension",
-    "keywords": ["yii2", "sweet alert", "yii2 alert", "alert"],
+    "keywords": ["yii2", "sweetalert", "sweet alert", "yii2 alert", "alert"],
     "license": "MIT",
     "authors": [
         {
