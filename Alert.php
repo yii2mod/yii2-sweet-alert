@@ -3,6 +3,7 @@
 namespace yii2mod\alert;
 
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\bootstrap\Widget;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
@@ -69,11 +70,6 @@ class Alert extends Widget
     public $callback = 'function() {}';
 
     /**
-     * @var bool If true then show message
-     */
-    protected $enable = false;
-
-    /**
      * Initializes the widget
      */
     public function init()
@@ -84,8 +80,6 @@ class Alert extends Widget
             $session = Yii::$app->getSession();
             $flashes = $session->getAllFlashes();
 
-            $this->enable = !empty($flashes);
-
             foreach ($flashes as $type => $data) {
                 $data = (array)$data;
                 foreach ($data as $message) {
@@ -94,11 +88,14 @@ class Alert extends Widget
                 }
                 $session->removeFlash($type);
             }
+        } else {
+            if (!$this->hasTitle()) {
+                throw new InvalidConfigException("The 'title' option is required.");
+            }
         }
     }
 
     /**
-     * Render alert
      * @return string|void
      */
     public function run()
@@ -111,7 +108,7 @@ class Alert extends Widget
      */
     protected function registerAssets()
     {
-        if ($this->useSessionFlash && $this->enable) {
+        if ($this->hasTitle()) {
             $view = $this->getView();
             AlertAsset::register($view);
             $js = "sweetAlert({$this->getOptions()}, {$this->callback});";
@@ -121,6 +118,7 @@ class Alert extends Widget
 
     /**
      * Get plugin options
+     *
      * @return string
      */
     protected function getOptions()
@@ -130,5 +128,15 @@ class Alert extends Widget
         $this->options['type'] = ArrayHelper::getValue($this->options, 'type', $this->type);
 
         return Json::encode($this->options);
+    }
+
+    /**
+     * @return bool
+     */
+    private function hasTitle()
+    {
+        $title = ArrayHelper::getValue($this->options, 'title');
+
+        return !empty($title);
     }
 }

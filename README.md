@@ -25,19 +25,27 @@ or add
 to the require section of your composer.json.
 
 Usage
-------------
-Once the extension is installed, simply add widget to your page as follows:
+-------
 
-1) Default usage, render all flash messages stored in session flash via Yii::$app->session->setFlash().
+**For render the message from session flash you can use the following code:**
+1) Set the message in your action, for example:
+
 ```php
-echo Alert::widget(); 
+Yii::$app->session->setFlash('success', 'This is the message');
 ```
 
-2) Example with custom message and custom callback:
+2) Simply add widget to your page as follows:
 ```php
+echo Alert::widget();
+```php
+
+**For render the custom message you can use the following code:**
+```php
+// A replacement for the "prompt" function
+
 echo \yii2mod\alert\Alert::widget([
+    'useSessionFlash' => false,
     'options' => [
-        'useSessionFlash' => false,
         'timer' => null,
         'type' => \yii2mod\alert\Alert::TYPE_INPUT,
         'title' => 'An input!',
@@ -59,6 +67,23 @@ echo \yii2mod\alert\Alert::widget([
 ]);
 ```
 
+**You can also change the theme of SweetAlert!**
+
+To change the theme, you can configure the assetManager array in your application configuration:
+```php
+// twitter theme
+
+'assetManager' => [
+    'bundles' => [
+        'yii2mod\alert\AlertAsset' => [
+            'css' => [
+                'dist/sweetalert.css',
+                'themes/twitter/twitter.css',
+            ]
+        ],
+    ],
+]
+```
 
 Alert Options 
 ----------------

@@ -17,7 +17,7 @@ class AlertTest extends TestCase
         $this->assertFalse(isset($widget->options['title']));
     }
 
-    public function testRenderAlert()
+    public function testRenderAlertFromSessionFlash()
     {
         $flashMessage = 'Test flash message';
         Yii::$app->session->addFlash('success', $flashMessage);
