@@ -38,7 +38,7 @@ Yii::$app->session->setFlash('success', 'This is the message');
 2) Simply add widget to your page as follows:
 ```php
 echo Alert::widget();
-```php
+```
 
 **For render the custom message you can use the following code:**
 ```php
