@@ -86,6 +86,31 @@ To change the theme, you can configure the assetManager array in your applicatio
 ]
 ```
 
+**You can override the Yii2 default data-confirm popup by the following code**
+
+The basics are to include the asset, then add this JS:
+
+```js
+/**
+ * Override the default yii confirm dialog. This function is
+ * called by yii when a confirmation is requested.
+ *
+ * @param message the message to display
+ * @param okCallback triggered when confirmation is true
+ * @param cancelCallback callback triggered when cancelled
+ */
+yii.confirm = function (message, okCallback, cancelCallback) {
+    swal({
+        title: message,
+        type: 'warning',
+        showCancelButton: true,
+        closeOnConfirm: true,
+        allowOutsideClick: true
+    }, okCallback);
+};
+```
+
+
 Alert Options 
 ----------------
 You can find them on the [options page](http://t4t5.github.io/sweetalert/)
