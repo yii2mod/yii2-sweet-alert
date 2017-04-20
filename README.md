@@ -86,7 +86,7 @@ To change the theme, you can configure the assetManager array in your applicatio
 ]
 ```
 
-**You can override the Yii2 default data-confirm popup by the following code**
+**You can override the Yii2 default data-confirm popup by the following code:**
 
 The basics are to include the asset, then add this JS:
 
