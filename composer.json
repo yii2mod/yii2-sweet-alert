@@ -2,7 +2,11 @@
     "name": "yii2mod/yii2-sweet-alert",
     "description": "Alert widget based on SweetAlert extension {@link http://tristanedwards.me/sweetalert)",
     "type": "yii2-extension",
-    "keywords": ["yii2", "yii2 sweetalert", "yii2 sweet alert", "yii2 alert"],
+    "keywords": [
+        "yii2",
+        "yii2 sweet alert",
+        "yii2 alert"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -11,18 +15,25 @@
         }
     ],
     "require": {
+        "php": ">=5.5",
         "yiisoft/yii2": "*",
         "yiisoft/yii2-bootstrap": "*",
-        "bower-asset/sweetalert" : "*"
+        "bower-asset/sweetalert": "*"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "~2.0"
     },
     "autoload": {
         "psr-4": {
             "yii2mod\\alert\\": ""
         }
     },
-    "extra": {
-        "asset-installer-paths": {
-            "bower-asset-library": "vendor/bower"
+    "config": {
+        "fxp-asset": {
+            "installer-paths": {
+                "npm-asset-library": "vendor/npm",
+                "bower-asset-library": "vendor/bower"
+            }
         }
     }
 }

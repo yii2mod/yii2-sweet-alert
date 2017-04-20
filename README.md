@@ -18,7 +18,7 @@ php composer.phar require --prefer-dist yii2mod/yii2-sweet-alert "*"
 
 or add
 
-```json
+```
 "yii2mod/yii2-sweet-alert": "*"
 ```
 

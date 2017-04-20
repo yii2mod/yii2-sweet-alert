@@ -7,6 +7,7 @@ use yii2mod\alert\Alert;
 
 /**
  * Class AlertTest
+ *
  * @package yii2mod\alert\tests
  */
 class AlertTest extends TestCase
@@ -21,7 +22,7 @@ class AlertTest extends TestCase
     {
         $flashMessage = 'Test flash message';
         Yii::$app->session->addFlash('success', $flashMessage);
-        $widget = Yii::createObject(Alert::className());
+        $widget = Yii::createObject(Alert::class);
         $this->assertEquals($flashMessage, $widget->options['title']);
     }
 }

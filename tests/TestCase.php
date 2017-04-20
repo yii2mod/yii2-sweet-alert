@@ -2,9 +2,10 @@
 
 namespace yii2mod\alert\tests;
 
-use yii\helpers\ArrayHelper;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
+use yii2mod\alert\tests\data\Session;
 
 /**
  * This is the base class for all yii framework unit tests.
@@ -27,6 +28,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * Populates Yii::$app with a new application
      * The application will be destroyed on tearDown() automatically.
+     *
      * @param array $config The application configuration, if needed
      * @param string $appClass name of the application class to create
      */
@@ -39,7 +41,10 @@ class TestCase extends \PHPUnit\Framework\TestCase
             'components' => [
                 'request' => [
                     'hostInfo' => 'http://domain.com',
-                    'scriptUrl' => 'index.php'
+                    'scriptUrl' => 'index.php',
+                ],
+                'session' => [
+                    'class' => Session::class,
                 ],
                 'assetManager' => [
                     'basePath' => $this->getTestFilePath(),
@@ -66,7 +71,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
     /**
      * Returns the test file path.
-     * @return string file path.
+     *
+     * @return string file path
      */
     protected function getTestFilePath()
     {

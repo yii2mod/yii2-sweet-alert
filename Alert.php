@@ -10,6 +10,7 @@ use yii\helpers\Json;
 
 /**
  * Alert widget renders a message from session flash or custom messages.
+ *
  * @package yii2mod\alert
  */
 class Alert extends Widget
@@ -48,6 +49,7 @@ class Alert extends Widget
     /**
      * All the flash messages stored for the session are displayed and removed from the session
      * Defaults to true.
+     *
      * @var bool
      */
     public $useSessionFlash = true;
@@ -81,7 +83,7 @@ class Alert extends Widget
             $flashes = $session->getAllFlashes();
 
             foreach ($flashes as $type => $data) {
-                $data = (array)$data;
+                $data = (array) $data;
                 foreach ($data as $message) {
                     $this->options['type'] = $type;
                     $this->options['title'] = $message;
