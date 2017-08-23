@@ -15,9 +15,10 @@ class TestCase extends \PHPUnit\Framework\TestCase
     protected function setUp()
     {
         parent::setUp();
+
         $this->mockApplication();
-        $testFilePath = $this->getTestFilePath();
-        FileHelper::createDirectory($testFilePath);
+
+        FileHelper::createDirectory($this->getTestFilePath());
     }
 
     protected function tearDown()
@@ -38,6 +39,10 @@ class TestCase extends \PHPUnit\Framework\TestCase
             'id' => 'testapp',
             'basePath' => __DIR__,
             'vendorPath' => $this->getVendorPath(),
+            'aliases' => [
+                '@bower' => '@vendor/bower-asset',
+                '@npm' => '@vendor/npm-asset',
+            ],
             'components' => [
                 'request' => [
                     'hostInfo' => 'http://domain.com',
